@@ -11,6 +11,9 @@ public class CharacterScript : MonoBehaviour
     public int healthCount;
     public int coinCount;
 
+    public GameObject healthTxt;
+    public GameObject coinTxt;
+
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -59,11 +62,16 @@ public class CharacterScript : MonoBehaviour
         if (collision.gameObject.tag == "Mace")
         {
             healthCount -= 10;
+            healthTxt.GetComponent<Text>().text = "Health: " + healthCount;
+
         }
 
         if (collision.gameObject.tag == "Coin")
         {
             coinCount++;
+            Destroy(collision.gameObject);
+            coinTxt.GetComponent<Text>().text = "Coin: " + coinCount;
+
         }
     }
 }
